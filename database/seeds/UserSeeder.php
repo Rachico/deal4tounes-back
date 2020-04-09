@@ -11,6 +11,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\User::class,10)->create();
+        factory(\App\Admin::class, 1)->create();
+        factory(\App\Client::class, 10)->create()->each(function ($client) {
+            $client->clientDetails()->save(factory(\App\ClientDetails::class)->make());
+        });
     }
 }

@@ -18,7 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'role_id',
     ];
 
     /**
@@ -58,4 +61,10 @@ class User extends Authenticatable
             $model->{$model->getKeyName()} = Uuid::generate()->string;
         });
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
 }

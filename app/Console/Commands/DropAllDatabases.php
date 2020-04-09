@@ -39,11 +39,29 @@ class DropAllDatabases extends Command
      */
     public function handle()
     {
-        $tables = DB::connection('accon')->select('SHOW TABLES');
-        $colname = 'Tables_in_accon';
-        foreach ($tables as $table) {
-            Schema::connection('accon')->drop($table->$colname);
+        if (is_dir('public/storage')) {
+            $this->deleteDirectory('public/storage');
         }
+        $this->call('config:cache');
         $this->call('migrate:fresh', ['--seed' => true]);
+        $this->call('passport:install', ['--force' => true]);
+    }
+
+    private function deleteDirectory($dir)
+    {
+
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (is_dir($dir . DIRECTORY_SEPARATOR . $object) && !is_link($dir . "/" . $object))
+                        $this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $object);
+                    else
+                        unlink($dir . DIRECTORY_SEPARATOR . $object);
+                }
+            }
+            rmdir($dir);
+
+        }
     }
 }

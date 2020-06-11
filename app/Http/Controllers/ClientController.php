@@ -66,11 +66,11 @@ class ClientController extends CrudController
         ]);
 
         $clientDetails = [
-            'date_of_Birth' => $request->date_of_Birth,
+            'date_of_birth' => $request->date_of_birth,
             'address' => $request->address,
-            'motorized'=> $request->motorized,
-            'points'=> $request->points,
             'phone' => $request->phone,
+            'city'=>$request->city,
+            'zip_code'=>$request->zip_code,
         ];
 
 

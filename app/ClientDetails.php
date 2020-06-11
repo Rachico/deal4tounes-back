@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ClientDetails extends UuidModel
 {
     protected $fillable = [
-            'date_of_Birth' ,
+            'date_of_birth',
             'address' ,
-            'motorized',
             'points',
             'phone',
+            'city',
+            'zip_code',
 
     ];
 

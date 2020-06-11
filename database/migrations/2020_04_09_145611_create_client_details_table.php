@@ -17,9 +17,12 @@ class CreateClientDetailsTable extends Migration
             $table->uuid('id');
             $table->date('date_of_birth');
             $table->string('address');
-            $table->boolean('motorized');
-            $table->integer('points');
+            $table->string('city');
+            $table->string('zip_code');
+
+            $table->integer('points')->nullable();
             $table->string('phone');
+
             $table->uuid('client_id');
 
             $table->timestamps();

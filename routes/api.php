@@ -13,12 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('contact', 'ContactController')->except(['edit', 'create', 'update', 'destroy']);
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'ClientController@store');
     Route::post('/change-password', 'AuthController@store');
+
 
     Route::group([
         'middleware' => 'auth:api'

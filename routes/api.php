@@ -23,10 +23,16 @@ Route::group([
     Route::post('/change-password', 'AuthController@store');
 
 
+
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('/logout', 'AuthController@logout');
         Route::get('/user', 'AuthController@user');
+        Route::get('/article','ArticleController@display');
+        Route::post('/article','ArticleController@store');
+
+        Route::get('article/{article_id}', 'ArticleController@like');
+       // Route::post('article/like', 'ArticleController@like');
     });
 });

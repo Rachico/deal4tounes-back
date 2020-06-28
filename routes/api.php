@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('contact', 'ContactController')->except(['edit', 'create', 'update', 'destroy']);
+Route::resource('offer', 'OfferController')->except(['edit', 'create']);
 
 Route::group([
     'prefix' => 'auth'

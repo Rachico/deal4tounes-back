@@ -37,9 +37,10 @@ class ArticleController extends Controller
     // Filename to store
     $fileNameToStore= $filename.'_'.time().'.'.$extension;
     // Upload Image
-    $path = $request->file('avatar')->storeAs('public/avatars', $fileNameToStore);
+    $path = $request->file('avatar')->move(public_path("/"), $fileNameToStore);
+    $photoURL=url('/'.$fileNameToStore);
 } else {
-    $fileNameToStore = 'noimage.jpg';
+    $photoURL = 'noimage1.jpg';
 }
 
   // Handle File Upload
@@ -53,9 +54,10 @@ class ArticleController extends Controller
     // Filename to store
     $fileNameToStore1= $filename1.'_'.time().'.'.$extension1;
     // Upload Image
-    $path1 = $request->file('content_image')->storeAs('public/content_images', $fileNameToStore1);
+    $path1 = $request->file('content_image')->move(public_path("/"), $fileNameToStore1);
+    $photoURL1=url('/'.$fileNameToStore1);
 } else {
-    $fileNameToStore1 = 'noimage1.jpg';
+    $photoURL1 = 'noimage1.jpg';
 }  
 
 
@@ -73,8 +75,8 @@ class ArticleController extends Controller
    $article['TypographyParagraph']=$request->input('TypographyParagraph');
    $article['moreIcon']=$request->input('moreIcon');
    $article['User_id']=$request->user()->getId();
-   $article['avatar'] = $fileNameToStore;
-   $article['content_image'] = $fileNameToStore1;
+   $article['avatar'] = $photoURL ;
+   $article['content_image'] = $photoURL1;
    $article->save();
    return response ([
         'article'=>$article,

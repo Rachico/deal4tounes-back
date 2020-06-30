@@ -59,4 +59,10 @@ class ActionController extends Controller
 
     return response ([$response,200]);
 }
+public function displayComments(){
+    $comments=Comment ::orderBy('created_at','desc')->get();
+  
+return ['Comments' => $comments ] ;
+
+}
 }

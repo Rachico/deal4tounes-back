@@ -70,9 +70,17 @@ class User extends Authenticatable
     public function likes(){
         return $this->hasMany(User::class);
     }
+    public function comments(){
+        return $this->hasMany(User::class);
+    }
     public function Articles(){
         return $this->hasMany(Article::class);
     }
+
+    public function Actions(){
+        return $this->hasMany(Action::class);
+    }
+
     public function getId()
     {
       return $this->id;

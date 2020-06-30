@@ -35,7 +35,8 @@ Route::group([
         Route::get('/action','ActionController@display');
         Route::post('/action','ActionController@store');
         Route::post('action/{action_id}', 'ActionController@commentStore');
-        Route::get('article', 'ArticleController@displayComments');
+        Route::get('/action', 'ActionController@displayComments');
+        Route::get('article/{article_id}', 'ArticleController@like');
        // Route::post('article/like', 'ArticleController@like');
     });
 });

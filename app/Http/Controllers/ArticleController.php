@@ -96,6 +96,7 @@ class ArticleController extends Controller
 
         $like_s=$request->like_s ;
         $article_id = $id ;
+        
        $like= \DB::table('likes')
     ->where ('Article_id',$article_id)
     ->where ('User_id',Auth::user()->id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\ClientDetails;
 use App\Repositories\ClientRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -80,9 +81,18 @@ class ClientController extends CrudController
             //saving logic here
             $client->save();
             $client->clientDetails()->create($clientDetails);
+            $tokenResult = $client->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+            $token->expires_at = Carbon::now()->addWeeks(1);
+            $token->save();
             DB::commit();
             return response()->json([
-                'message' => 'Successfully created user!'
+                'message' => 'Successfully created user and logged in',
+                'access_token' => $tokenResult->accessToken,
+                'token_type' => 'Bearer',
+                'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString()
             ], 201);
         } catch (\Exception $e) {
             //failed logic here
@@ -90,6 +100,12 @@ class ClientController extends CrudController
             throw $e;
 
         }
+    }
+
+    public function getAllClients()
+    {
+        $clients = Client::all();
+        return ['clients'=>$clients];
     }
 
 }

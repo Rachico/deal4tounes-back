@@ -14,7 +14,7 @@ class CodeController extends Controller
         $points = Code::where('id',$code_id)->first()->points;
         $client= Client::find($client_id);
         //dd($client->clientDetails->points);
-        $client->clientDetails->points = $points;
+        $client->clientDetails->points += $points;
         $client->clientDetails->save();
         return ['message'=>'success'];
     }

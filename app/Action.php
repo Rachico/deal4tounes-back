@@ -13,8 +13,7 @@ class Action extends Model
         'body',
 
         'address',
-        
-       
+         
         'User_id',
     ];
 

@@ -11,6 +11,8 @@ class Action extends Model
         'title',
        
         'body',
+
+        'address',
         
        
         'User_id',

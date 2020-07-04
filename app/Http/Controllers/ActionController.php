@@ -16,12 +16,14 @@ class ActionController extends Controller
         $validatedData =$request ->validate ([
             'title'=>'required' ,
             'body'=> 'required',
+            'address'=>'required',
             ]);
 
 
             $action = new Action;
             $action['title']=$request->input('title'); 
             $action['body']=$request->input('body');
+            $action['address']=$request->input('address');
             $action['User_id']=$request->user()->getId(); 
             $action->save();
              

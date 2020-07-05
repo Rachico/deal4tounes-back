@@ -68,6 +68,11 @@ return ['Comments' => $comments ] ;
 
 }
 
+public function addressList()
+{
+    return Action::all()->pluck('address');
+}
+
 public function getActionByAddress($address)
 {
     return Action::where('address',$address)->get();

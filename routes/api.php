@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::resource('contact', 'ContactController')->except(['edit', 'create', 'update', 'destroy']);
 Route::resource('offer', 'OfferController')->except(['edit', 'create']);
 Route::patch('client/{client_id}/points/{code_id}','CodeController@setPoints');
+Route::get('action/list','ActionController@addressList');
 Route::get('action/{address}','ActionController@getActionByAddress');
 
 Route::group([
@@ -38,6 +39,7 @@ Route::group([
         Route::post('/action','ActionController@store');
         Route::post('action/{action_id}', 'ActionController@commentStore');
         Route::get('/action', 'ActionController@displayComments');
+        route::get('/action', 'ActionController@displayAction');
         Route::get('article/{article_id}', 'ArticleController@like');
         Route::resource('client','ClientController')->except(['edit', 'create']);
         // Route::post('article/like', 'ArticleController@like');

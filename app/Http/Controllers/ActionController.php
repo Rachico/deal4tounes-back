@@ -70,7 +70,7 @@ return ['Comments' => $comments ] ;
 
 public function addressList()
 {
-    return Action::all()->pluck('address');
+    return Action::all()->pluck('lat','lng');
 }
 
 public function getActionByAddress($address)

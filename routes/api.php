@@ -39,7 +39,6 @@ Route::group([
         Route::post('/action','ActionController@store');
         Route::post('action/{action_id}', 'ActionController@commentStore');
         Route::get('/action', 'ActionController@displayComments');
-        route::get('/action', 'ActionController@displayAction');
         Route::get('article/{article_id}', 'ArticleController@like');
         Route::resource('client','ClientController')->except(['edit', 'create']);
         // Route::post('article/like', 'ArticleController@like');

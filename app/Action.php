@@ -9,12 +9,9 @@ class Action extends Model
     //
     protected $fillable = [
         'title',
-       
         'body',
-
-        'address',
-         
-        'User_id',
+        'lat',
+        'lng',
     ];
 
 

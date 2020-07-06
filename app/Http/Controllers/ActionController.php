@@ -16,14 +16,16 @@ class ActionController extends Controller
         $validatedData =$request ->validate ([
             'title'=>'required' ,
             'body'=> 'required',
-            'address'=>'required',
+            'lat'=>'required',
+            'lng'=>'required',
             ]);
 
 
             $action = new Action;
             $action['title']=$request->input('title');
             $action['body']=$request->input('body');
-            $action['address']=$request->input('address');
+            $action['lat']=$request->input('lat');
+            $action['lng']=$request->input('lng');
             $action['User_id']=$request->user()->getId();
             $action->save();
 
@@ -77,4 +79,11 @@ public function getActionByAddress($address)
 {
     return Action::where('address',$address)->get();
 }
+
+    public function latlngList()
+    {
+        return Action::all()->map(function($item){
+            return collect($item)->only(['lat' , 'lng', 'title', 'body']);
+        });
+    }
 }

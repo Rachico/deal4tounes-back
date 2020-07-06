@@ -16,13 +16,10 @@ class Actions extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('address');
+            $table->double('lat',15,6);
+            $table->double('lng',15,6);
             $table->mediumText('body');
-            $table->char('User_id',36);
             $table->timestamps();
-            $table->foreign('User_id')
-            ->references('id')
-            ->on('users')->onDelete('cascade');
 
         });
 

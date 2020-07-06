@@ -72,6 +72,7 @@ class ClientController extends CrudController
             'phone' => $request->phone,
             'city'=>$request->city,
             'zip_code'=>$request->zip_code,
+            'points'=>0,
         ];
 
 

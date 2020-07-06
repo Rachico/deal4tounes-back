@@ -13,20 +13,17 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-       
+
   Schema::create('articles', function (Blueprint $table) {
     $table->bigIncrements('id');
     $table->string('title');
-    $table->date('subheader');
-    $table->mediumText('Typography');
-    $table->longText('TypographyParagraph');
-    
-    
-
-    $table->string('moreIcon');
-    $table->char('User_id',36);
+    $table->date('subheader')->nullable();
+    $table->text('Typography');
+    $table->text('TypographyParagraph');
+    $table->string('moreIcon')->nullable();
+    $table->uuid('User_id');
     $table->timestamps();
-    
+
     $table->foreign('User_id')
         ->references('id')
         ->on('users')->onDelete('cascade');

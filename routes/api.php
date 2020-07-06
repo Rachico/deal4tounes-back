@@ -16,8 +16,10 @@ use Illuminate\Http\Request;
 Route::resource('contact', 'ContactController')->except(['edit', 'create', 'update', 'destroy']);
 Route::resource('offer', 'OfferController')->except(['edit', 'create']);
 Route::patch('client/{client_id}/points/{code_id}','CodeController@setPoints');
-Route::get('action/list','ActionController@addressList');
-Route::get('action/{address}','ActionController@getActionByAddress');
+Route::patch('client/{client_id}/{offer_id}','OfferController@buyOffer');
+
+
+Route::get('action/latlnglist','ActionController@latlngList');
 
 Route::group([
     'prefix' => 'auth'

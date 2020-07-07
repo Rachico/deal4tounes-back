@@ -26,7 +26,7 @@ class ActionController extends Controller
             $action['body']=$request->input('body');
             $action['lat']=$request->input('lat');
             $action['lng']=$request->input('lng');
-            $action['User_id']=$request->user()->getId();
+
             $action->save();
 
             return response ([
